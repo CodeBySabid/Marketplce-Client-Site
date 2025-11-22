@@ -2,7 +2,8 @@ import React, { use, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
     const {createUser, createUserUseGoogle} = use(AuthContext);
@@ -15,6 +16,36 @@ const Register = () => {
         const photoURL = event.target.photoURL.value;
         const password = event.target.password.value;
         console.log(name, email, photoURL, password)
+        if (!name) {
+            toast.error("Please fill in the name field!");
+            return;
+        }
+        if (!email) {
+            toast.error("Please fill in the email field!");
+            return;
+        }
+        if (!photoURL) {
+            toast.error("Please fill in the photoURL field!");
+            return;
+        }
+        if (!password) {
+            toast.error("Please fill in the password field!");
+            return;
+        }
+        createUser (email, password)
+        .then((result) => {
+            const user = result.user;
+            updateProfile(user, {
+                displayName: name,
+                photoURL: photoURL,
+            })
+            .then(() => {
+                toast.success("Successfully Register");
+            })
+            .catch((error) => {
+                toast.error(error.massage)
+            })
+        })
     }
 
     return (
