@@ -9,9 +9,13 @@ import { AuthContext } from '../../context/AuthContext';
 
 
 const Navbar = () => {
-  const { user,  } = use(AuthContext)
+  const { user, sigOut } = use(AuthContext)
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  const handleSigOut = () => {
+    sigOut()
+  }
 
   useEffect(() => {
     AOS.init({
@@ -88,7 +92,7 @@ const Navbar = () => {
             )}
           </div>
           {user ? (
-            <Link className="w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl">
+            <Link onClick={handleSigOut} className="w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl">
               Log Out
             </Link>
           ) : <>
@@ -119,7 +123,7 @@ const Navbar = () => {
           <div className='flex w-full justify-center items-center gap-2 h-auto'>
             <div className="relative group">
               {user ? (
-                <Link to={'/'}><img className="rounded-full w-[45px] h-[45px] object-cover cursor-pointer" src={user.photoURL} alt="profile"/></Link>
+                <Link to={'/'}><img className="rounded-full w-[45px] h-[45px] object-cover cursor-pointer" src={user.photoURL} alt="profile" /></Link>
               ) : ''}
               {user && (
                 <span className="absolute left-1/2 -bottom-10 -translate-x-1/2 bg-gray-800 text-white text-sm px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
@@ -128,7 +132,7 @@ const Navbar = () => {
               )}
             </div>
             {user ? (
-              <Link className="w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
+              <Link onClick={handleSigOut} className="w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
                 Log Out
               </Link>
             ) : <>
