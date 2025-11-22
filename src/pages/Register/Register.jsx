@@ -16,7 +16,6 @@ const Register = () => {
         const email = event.target.email.value;
         const photoURL = event.target.photoURL.value;
         const password = event.target.password.value;
-        console.log(name, email, photoURL, password)
         if (!name) {
             toast.error("Please fill in the name field!");
             return;
@@ -71,10 +70,16 @@ const Register = () => {
     const handleGoogleLogin = () => {
         createUserUseGoogle()
             .then(() => {
-                toast.success("Successfully Login");
+                toast.success("Successfully Logged In with Google!");
+                navigate(location.state || '/')
             })
-            .catch((error) => {
-                toast.error(error.massage);
+            .catch(error => {
+                if (error.code && error.code !== 'auth/popup-closed-by-user') {
+                    toast.error("Google Login Failed!");
+                }
+                else {
+                    toast.error(error.message);
+                }
             })
     }
 
