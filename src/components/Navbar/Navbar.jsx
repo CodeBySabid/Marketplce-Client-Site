@@ -135,7 +135,7 @@ const Navbar = () => {
               <Link to="/login" className="w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
                 Login
               </Link>
-              <Link to="/" className="w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
+              <Link to="/register" className="w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
                 Register
               </Link>
             </>}

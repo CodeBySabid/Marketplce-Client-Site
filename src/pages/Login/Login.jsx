@@ -13,11 +13,7 @@ const Login = () => {
         const email = event.target.email.value;
         const password = event.target.password.value;
         createUserUseGoogle(email, password)
-        .then(() => {
-            
-        })
-
-        }
+        
     }
 
     return (
