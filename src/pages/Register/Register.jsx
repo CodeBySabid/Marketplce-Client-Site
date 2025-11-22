@@ -1,14 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
 import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
     const { createUser, createUserUseGoogle } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
-
+    const navigate = useNavigate();
+    const location = useLocation();
     const handleCreateUser = (event) => {
         event.preventDefault();
         const name = event.target.name.value;
@@ -32,6 +33,17 @@ const Register = () => {
             toast.error("Please fill in the password field!");
             return;
         }
+        const Uppercase = /[A-Z]/;
+        const Lowercase = /[a-z]/;
+        if (!Uppercase.test(password)) {
+            return toast.error("Password must have at least one uppercase letter!");
+        }
+        if (!Lowercase.test(password)) {
+            return toast.error("Password must have at least one lowercase letter!");
+        }
+        if (password.length < 6) {
+            return toast.error("Password must be at least 6 characters long!");
+        }
         createUser(email, password)
             .then((result) => {
                 const user = result.user;
@@ -41,11 +53,19 @@ const Register = () => {
                 })
                     .then(() => {
                         toast.success("Successfully Register");
+                        navigate(location.state || '/')
                     })
                     .catch((error) => {
                         toast.error(error.massage)
                     })
             })
+            .catch(error => {
+                if (error.code === "auth/email-already-in-use") {
+                    toast.error("This email is already registered. Please login!");
+                } else {
+                    toast.error(error.message);
+                }
+            });
     }
 
     const handleGoogleLogin = () => {
