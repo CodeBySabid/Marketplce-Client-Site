@@ -1,17 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, use } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { IoMdMenu } from "react-icons/io";
 import { HiXMark } from "react-icons/hi2";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import image from '../../assets/download (9).jpg';
+import { AuthContext } from '../../context/AuthContext';
 
-const user = {
-  displayName: "JobPortal",
-  photoURL: image,
-};
 
 const Navbar = () => {
+  const { user,  } = use(AuthContext)
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -42,23 +40,23 @@ const Navbar = () => {
 
   const links = (
     <>
-        <NavLink to="/" onClick={() => setOpen(false)}
-        className={({ isActive }) => isActive ? "text-blue-600 font-semibold hover:bg-[#3f51f3] rounded-2xl hover:text-white" : "text-black hover:bg-[#3f51f3] px-2 hover:rounded-2xl hover: hover:text-white"}>
+      <NavLink to="/" onClick={() => setOpen(false)}
+        className={({ isActive }) => isActive ? "text-blue-600 px-3  font-semibold hover:bg-[#3f51f3] rounded-2xl hover:text-white" : "text-black hover:bg-[#3f51f3] px-3 hover:rounded-2xl hover: hover:text-white"}>
         Home
       </NavLink>
 
       <NavLink to="/a" onClick={() => setOpen(false)}
-        className={({ isActive }) => isActive ? "text-blue-600 font-semibold hover:bg-[#3f51f3] rounded-2xl hover:text-white" : "text-black hover:bg-[#3f51f3] px-2 hover:rounded-2xl hover: hover:text-white"}>
+        className={({ isActive }) => isActive ? "text-blue-600 px-3 font-semibold hover:bg-[#3f51f3] rounded-2xl hover:text-white" : "text-black hover:bg-[#3f51f3] px-3 hover:rounded-2xl hover: hover:text-white"}>
         All Jobs
       </NavLink>
 
       <NavLink to="/b" onClick={() => setOpen(false)}
-        className={({ isActive }) => isActive ? "text-blue-600 font-semibold hover:bg-[#3f51f3] rounded-2xl hover:text-white" : "text-black hover:bg-[#3f51f3] px-2 hover:rounded-2xl hover: hover:text-white"}>
+        className={({ isActive }) => isActive ? "text-blue-600 px-3 font-semibold hover:bg-[#3f51f3] rounded-2xl hover:text-white" : "text-black hover:bg-[#3f51f3] px-3 hover:rounded-2xl hover: hover:text-white"}>
         Add a Job
       </NavLink>
 
       <NavLink to="/c" onClick={() => setOpen(false)}
-        className={({ isActive }) => isActive ? "text-blue-600 font-semibold hover:bg-[#3f51f3] rounded-2xl hover:text-white" : "text-black hover:bg-[#3f51f3] px-2 hover:rounded-2xl hover: hover:text-white"}>
+        className={({ isActive }) => isActive ? "text-blue-600 px-3 font-semibold hover:bg-[#3f51f3] rounded-2xl hover:text-white" : "text-black hover:bg-[#3f51f3] px-3 hover:rounded-2xl hover: hover:text-white"}>
         My Accepted Tasks
       </NavLink>
     </>
@@ -74,21 +72,33 @@ const Navbar = () => {
           <span>JobPortal</span>
         </Link>
 
-        <div className="hidden lg:flex gap-6 text-lg">
+        <div className="hidden lg:flex text-lg">
           {links}
         </div>
 
-        <div className="hidden lg:flex items-center gap-4">
-          {user && (
-            <div className="relative group">
-              <img src={user.photoURL} className="w-11 h-11 rounded-full object-cover cursor-pointer" />
-              <span className="absolute left-1/2 -bottom-10 -translate-x-1/2 bg-gray-800 text-white text-sm px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+        <div className="hidden lg:flex gap-3">
+          <div className="relative group">
+            {user ? (
+              <Link to={'/myprofile'}><img className="rounded-full w-[45px] h-[45px] object-cover cursor-pointer" src={user.photoURL} alt="profile" /></Link>
+            ) : ''}
+            {user && (
+              <span className="absolute left-1/2 -bottom-10 -translate-x-1/2 bg-gray-800 text-white text-sm px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
                 {user.displayName}
               </span>
-            </div>
-          )}
-
-          <button className="btn w-32 bg-green-500 text-white rounded-xl hover:bg-green-600">Log Out</button>
+            )}
+          </div>
+          {user ? (
+            <Link className="w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl">
+              Log Out
+            </Link>
+          ) : <>
+            <Link to="/login" className="w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
+              Login
+            </Link>
+            <Link to="/register" className="w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
+              Register
+            </Link>
+          </>}
         </div>
 
         <button
@@ -106,31 +116,30 @@ const Navbar = () => {
           className="lg:hidden flex-col flex bg-white shadow-md px-6 py-5 space-y-4 text-center"
         >
           {links}
-
           <div className='flex w-full justify-center items-center gap-2 h-auto'>
-                            <div className="relative group">
-                                {user ? (
-                                    <Link to={'/'}><img className="rounded-full w-[45px] h-[45px] object-cover cursor-pointer" src={user.photoURL} alt="profile" /></Link>
-                                ) : ''}
-                                {user && (
-                                    <span className="absolute left-1/2 -bottom-10 -translate-x-1/2 bg-gray-800 text-white text-sm px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
-                                        {user.displayName}
-                                    </span>
-                                )}
-                            </div>
-                            {user ? (
-                                <Link className="w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
-                                    Log Out
-                                </Link>
-                            ) : <>
-                                <Link to="/" className="w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
-                                    Login
-                                </Link>
-                                <Link to="/" className="w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
-                                    Register
-                                </Link>
-                            </>}
-                        </div>
+            <div className="relative group">
+              {user ? (
+                <Link to={'/'}><img className="rounded-full w-[45px] h-[45px] object-cover cursor-pointer" src={user.photoURL} alt="profile"/></Link>
+              ) : ''}
+              {user && (
+                <span className="absolute left-1/2 -bottom-10 -translate-x-1/2 bg-gray-800 text-white text-sm px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
+                  {user.displayName}
+                </span>
+              )}
+            </div>
+            {user ? (
+              <Link className="w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
+                Log Out
+              </Link>
+            ) : <>
+              <Link to="/login" className="w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
+                Login
+              </Link>
+              <Link to="/" className="w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
+                Register
+              </Link>
+            </>}
+          </div>
         </div>
       )}
 
