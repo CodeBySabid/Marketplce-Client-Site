@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const AlljobsData = ({JobData}) => {
+    const {_id} = JobData
     return (
-        <div data-aos="flip-down" className="cards">
+        <Link to={`/jobdeteils/${_id}`} data-aos="flip-down" className="cards">
             <div className="w-full h-full cards2">
                 <img className='rounded-t-[20px] w-full h-[200px]' src={JobData.coverImage} alt="" />
                 <div className='p-3 flex flex-col gap-2'>
@@ -21,7 +23,7 @@ const AlljobsData = ({JobData}) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 

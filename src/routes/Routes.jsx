@@ -7,6 +7,7 @@ import AllJobs from "../pages/AllJobs/AllJobs";
 import AcceptedTasks from "../pages/AcceptedTasks/AcceptedTasks";
 import AddJob from "../pages/AddJob/AddJob";
 import PrivateRouter from "./PrivateRouter";
+import JobDetails from "../pages/JobDetails/jobDetails";
 
 const routes = createBrowserRouter(
     [
@@ -34,6 +35,12 @@ const routes = createBrowserRouter(
                     path: '/mytasks',
                     element: <PrivateRouter>
                         <AcceptedTasks></AcceptedTasks>
+                    </PrivateRouter>,
+                },
+                {
+                    path: '/jobdeteils/:_id',
+                    element: <PrivateRouter>
+                        <JobDetails></JobDetails>
                     </PrivateRouter>,
                 },
                 {
