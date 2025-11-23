@@ -4,7 +4,7 @@ import '../Home/button.css'
 
 const HeroSection = () => {
     return (
-        <div style={{ width: '100%', height: '60vh', position: 'relative' }}>
+        <div className='max-sm:h-[50vh]' style={{ width: '100%', height: '60vh' , position: 'relative' }}>
             <FloatingLines
                 enabledWaves={['top', 'middle', 'bottom']}
                 // Array - specify line count per wave; Number - same count for all waves
@@ -16,8 +16,8 @@ const HeroSection = () => {
                 interactive={true}
                 parallax={true}
             />
-            <div className='w-full h-full flex justify-center items-center absolute top-0 left-0 bg-[#0000005d]'>
-                <div className='text-4xl text-white font-bold text-center flex flex-col gap-2.5'>
+            <div className='w-full h-full flex justify-center items-center absolute top-0 left-0 bg-[#00000085]'>
+                <div className='text-4xl max-md:text-[3.5vw] max-sm:text-[6vw] text-white font-bold text-center flex flex-col gap-2.5'>
                     <h1>A Reliable
                         <br />
                         Marketplace Platform
@@ -25,7 +25,7 @@ const HeroSection = () => {
                     <p>
                         Find the perfect jog for you
                     </p>
-                    <button className='shadow__btn '>Create a Job</button>
+                    <button className='shadow__btn mt-3.5 md:text-[17px] max-md:text-[2vw] max-sm:text-[4vw]'>Create a Job</button>
                 </div>
             </div>
         </div>

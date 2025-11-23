@@ -110,7 +110,7 @@ const Navbar = () => {
           className="lg:hidden text-black relative z-[999]"
           onClick={() => setOpen(!open)}
         >
-          {open ? <HiXMark size={32} /> : <IoMdMenu size={32} />}
+          {open ? <HiXMark className='text-white' size={32} /> : <IoMdMenu className='text-white' size={32} />}
         </button>
       </div>
 
@@ -118,7 +118,7 @@ const Navbar = () => {
         <div
           ref={dropdownRef}
           data-aos="fade-down"
-          className="lg:hidden flex-col flex bg-white shadow-md px-6 py-5 space-y-4 text-center"
+          className="lg:hidden flex-col flex bg-[#0000007e] shadow-md px-6 py-5 space-y-4 text-center"
         >
           {links}
           <div className='flex w-full justify-center items-center gap-2 h-auto'>
