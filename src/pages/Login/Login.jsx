@@ -3,6 +3,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
+import '../../Button/button.css'
 
 const Login = () => {
     const { sigIn, createUserUseGoogle } = use(AuthContext);
@@ -100,7 +101,7 @@ const Login = () => {
                             </span>
                         </div>
                         <h3 className="link link-hover">Forgot password?</h3>
-                        <button className="btn btn-neutral mt-4">Login</button>
+                        <button className="button w-[95%] mt-2">Login</button>
                     </form>
                     <h2 className='text-2xl font-semibold text-center py-1'>Or</h2>
                     <button onClick={handleGoogleLogin} className="btn bg-white text-black border-[#e5e5e5]">

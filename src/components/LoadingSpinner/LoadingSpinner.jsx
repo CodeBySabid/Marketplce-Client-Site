@@ -3,7 +3,9 @@ import './LoadingSpinner.css'
 
 const LoadingSpinner = () => {
     return (
-        <span class="loader"></span>
+        <div className='w-full h-[90vh] flex justify-center items-center'>
+            <span class="loader"></span>
+        </div>
     );
 };
 

@@ -6,6 +6,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import image from '../../assets/download (9).jpg';
 import { AuthContext } from '../../context/AuthContext';
+import '../../Button/button.css'
 
 
 const Navbar = () => {
@@ -45,33 +46,33 @@ const Navbar = () => {
   const links = (
     <>
       <NavLink to={"/"} onClick={() => setOpen(false)}
-        className={({ isActive }) => isActive ? "text-blue-600 px-3  font-semibold hover:bg-[#3f51f3] rounded-2xl hover:text-white" : "text-black hover:bg-[#3f51f3] px-3 hover:rounded-2xl hover: hover:text-white"}>
+        className={({ isActive }) => isActive ? "text-blue-600 px-3  font-semibold rounded-2xl" : "text-white hover:bg-[#3f51f3] px-3 hover:rounded-2xl hover: hover:text-white"}>
         Home
       </NavLink>
 
       <NavLink to={"/alljobs"} onClick={() => setOpen(false)}
-        className={({ isActive }) => isActive ? "text-blue-600 px-3 font-semibold hover:bg-[#3f51f3] rounded-2xl hover:text-white" : "text-black hover:bg-[#3f51f3] px-3 hover:rounded-2xl hover: hover:text-white"}>
+        className={({ isActive }) => isActive ? "text-blue-600 px-3 font-semibold rounded-2xl" : "text-white hover:bg-[#3f51f3] px-3 hover:rounded-2xl hover: hover:text-white"}>
         All Jobs
       </NavLink>
 
       <NavLink to={"/addjob"} onClick={() => setOpen(false)}
-        className={({ isActive }) => isActive ? "text-blue-600 px-3 font-semibold hover:bg-[#3f51f3] rounded-2xl hover:text-white" : "text-black hover:bg-[#3f51f3] px-3 hover:rounded-2xl hover: hover:text-white"}>
+        className={({ isActive }) => isActive ? "text-blue-600 px-3 font-semibold rounded-2xl" : "text-white hover:bg-[#3f51f3] px-3 hover:rounded-2xl hover: hover:text-white"}>
         Add a Job
       </NavLink>
 
       <NavLink to={"/mytasks"} onClick={() => setOpen(false)}
-        className={({ isActive }) => isActive ? "text-blue-600 px-3 font-semibold hover:bg-[#3f51f3] rounded-2xl hover:text-white" : "text-black hover:bg-[#3f51f3] px-3 hover:rounded-2xl hover: hover:text-white"}>
+        className={({ isActive }) => isActive ? "text-blue-600 px-3 font-semibold rounded-2xl" : "text-white hover:bg-[#3f51f3] px-3 hover:rounded-2xl hover: hover:text-white"}>
         My Accepted Tasks
       </NavLink>
     </>
   );
 
   return (
-    <div className="sticky top-0 z-50 bg-[#13bfddd0] shadow-sm">
+    <div className="sticky top-0 z-50 bg-[#11062c49] shadow-sm">
 
       <div className="navbar px-4 py-3 flex justify-between items-center">
 
-        <Link to={"/"} className="flex items-center gap-3 text-2xl font-bold text-black">
+        <Link to={"/"} className="flex items-center gap-3 text-2xl font-bold text-white">
           <img src={image} className="w-12 h-10 rounded-md object-cover" alt="logo" />
           <span>JobPortal</span>
         </Link>
@@ -92,14 +93,14 @@ const Navbar = () => {
             )}
           </div>
           {user ? (
-            <Link onClick={handleSigOut} className="w-36 border-none btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl">
+            <Link onClick={handleSigOut} className="btns w-36">
               Log Out
             </Link>
           ) : <>
-            <Link to={"/login"} className="border-none w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
+            <Link to={"/login"} className="btns w-36" >
               Login
             </Link>
-            <Link to={"/register"} className="border-none w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
+            <Link to={"/register"} className="btns w-36" >
               Register
             </Link>
           </>}
@@ -132,14 +133,14 @@ const Navbar = () => {
               )}
             </div>
             {user ? (
-              <Link onClick={handleSigOut} className="border-none w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
+              <Link onClick={handleSigOut} className="btns w-36" >
                 Log Out
               </Link>
             ) : <>
-              <Link to={"/login"} className="border-none w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
+              <Link to={"/login"} className="btns w-36" >
                 Login
               </Link>
-              <Link to={"/register"} className="border-none w-36 btn font-semibold bg-green-400 text-gray-50 hover:text-black hover:bg-green-500 border rounded-2xl py-1 px-2.5 text-xl" >
+              <Link to={"/register"} className="btns w-36" >
                 Register
               </Link>
             </>}

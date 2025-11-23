@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
 import { updateProfile } from 'firebase/auth';
+import '../../Button/button.css'
 
 const Register = () => {
     const { createUser, createUserUseGoogle } = useContext(AuthContext);
@@ -114,7 +115,7 @@ const Register = () => {
                                 )}
                             </span>
                         </div>
-                        <button className="btn btn-neutral mt-4">Register</button>
+                        <button className="button mt-2 w-[95%]">Register</button>
                     </form>
                     <h2 className='text-2xl font-semibold text-center py-1'>Or</h2>
                     <button onClick={handleGoogleLogin} className="btn bg-white text-black border-[#e5e5e5]">
