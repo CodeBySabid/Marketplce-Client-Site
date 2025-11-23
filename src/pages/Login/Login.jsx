@@ -99,12 +99,7 @@ const Login = () => {
                                 )}
                             </span>
                         </div>
-                        <Link to={`/Forgot?email=${encodeURIComponent(
-                            document.querySelector("input[name='email']")?.value || ""
-                        )}`}
-                            className="link link-hover">
-                            Forgot password?
-                        </Link>
+                        <h3 className="link link-hover">Forgot password?</h3>
                         <button className="btn btn-neutral mt-4">Login</button>
                     </form>
                     <h2 className='text-2xl font-semibold text-center py-1'>Or</h2>
