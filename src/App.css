@@ -4,3 +4,13 @@
   position: relative;
   overflow: hidden;
 }
+
+html[data-theme='light'] {
+    background-color: white;
+    color: black;
+}
+
+html[data-theme='dark'] {
+  background-color: #0f172a;
+  color: white;
+}
