@@ -1,8 +1,10 @@
 import React from 'react';
 import './homejobs.css'
+import { Link } from 'react-router';
+import '../../ButtonAndCard/buttonandcard.css'
 
 const HomeJobs = ({ sixjobs }) => {
-    console.log(sixjobs);
+    const { _id } = sixjobs
     return (
         <div data-aos="flip-down" className="cards">
             <div className="w-full h-full cards2">
@@ -22,6 +24,7 @@ const HomeJobs = ({ sixjobs }) => {
                         <h1 className='text-green-600'> {sixjobs.userEmail}</h1>
                     </div>
                 </div>
+                <Link to={`/jobdeteils/${_id}`} className='button mx-auto my-4 w-[200px] h-[50px]'>View Details</Link>
             </div>
         </div>
     );

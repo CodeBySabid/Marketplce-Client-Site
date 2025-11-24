@@ -8,7 +8,6 @@ import StaticSections from './StaticSections';
 const Home = () => {
     const { jobData } = JobData();
     const sixJobData = jobData.slice(-6);
-    console.log(sixJobData)
     return (
         <div>
             <HeroSection></HeroSection>
