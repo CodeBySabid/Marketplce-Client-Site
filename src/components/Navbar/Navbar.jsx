@@ -99,6 +99,10 @@ const Navbar = () => {
         className={({ isActive }) => isActive ? "text-blue-600 px-3 font-semibold rounded-2xl" : "text-white hover:bg-[#3f51f3] px-3 hover:rounded-2xl hover:text-white"}>
         Add a Job
       </NavLink>
+      <NavLink to={"/myjobs"} onClick={() => setOpen(false)}
+        className={({ isActive }) => isActive ? "text-blue-600 px-3 font-semibold rounded-2xl" : "text-white hover:bg-[#3f51f3] px-3 hover:rounded-2xl hover:text-white"}>
+        MyJobs
+      </NavLink>
 
       <NavLink to={"/mytasks"} onClick={() => setOpen(false)}
         className={({ isActive }) => isActive ? "text-blue-600 px-3 font-semibold rounded-2xl" : "text-white hover:bg-[#3f51f3] px-3 hover:rounded-2xl hover:text-white"}>

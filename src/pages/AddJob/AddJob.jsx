@@ -9,7 +9,6 @@ const AddJob = () => {
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
     const [summary, setSummary] = useState("");
-    const [skillsRequired, setskillsrequired] = useState("");
     const [coverImage, setCoverImage] = useState("");
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,7 +16,6 @@ const AddJob = () => {
             title,
             category,
             summary,
-            skillsRequired,
             coverImage,
             postedBy: user.displayName,
             userEmail: user.email,
@@ -50,10 +48,6 @@ const AddJob = () => {
                                 <option value="Graphics Design">Graphics Design</option>
                                 <option value="Marketing">Marketing</option>
                             </select>
-
-                            <label className="label">SkillsRequired</label>
-                            <input type="text" onChange={(e) => setskillsrequired(e.target.value)} className="input" placeholder="SkillsRequired" required />
-
                             <label className="label">Summary</label>
                             <textarea
                                 placeholder="Summary"
