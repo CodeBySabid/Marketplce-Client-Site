@@ -7,7 +7,9 @@ const MainLayout = () => {
     return (
         <div className='overflow-x-hidden'>
             <Navbar></Navbar>
-            <Outlet></Outlet>
+            <div  className="pt-20">
+                <Outlet></Outlet>
+            </div>
             <Footer></Footer>
         </div>
     );

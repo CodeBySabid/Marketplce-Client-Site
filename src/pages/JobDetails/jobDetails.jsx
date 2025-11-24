@@ -3,6 +3,8 @@ import { useParams } from 'react-router';
 import JobData from '../../hooks/JobData';
 import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import Swal from 'sweetalert2';
 const JobDetails = () => {
     const { _id } = useParams();
     const { jobData } = JobData();
@@ -13,20 +15,30 @@ const JobDetails = () => {
         const acceptedJob = { jobId: _id, title, summary, category, experienceLevel, jobType, postedBy, employerEmail: user.email, acceptedBy: user.email, acceptedAt: new Date() }
         try {
             const response = await axios.post("http://localhost:3000/accepted", acceptedJob);
-            console.log(response.data);
-            alert("Job Accepted Successfully!");
+            // toast.success("Job Accepted Successfully!")
+            Swal.fire({
+                title: "Job Accepted Successfully!",
+                icon: "success",
+                draggable: true
+            });
         } catch (error) {
-            console.error(error);
-            alert("Error accepting job");
+
+            if (error.response?.data?.message === "You already accepted this job!") {
+                toast.error("You have already accepted this job!")
+            } else {
+                toast.error(error.message)
+            }
         }
+
     }
+
     return (
         <div className='my-8 p-2.5'>
-            <div className='w-full h-full p-4 border rounded-2xl max-w-[1300px] '>
+            <div className='w-full h-full p-4 border rounded-2xl max-w-[1300px] mx-auto'>
                 <img className='mx-auto mb-4 w-[400px] h-[200px] max-xl:w-[40vw] max-lg:h-[20vw] max-sm:w-[55vw] max-sm:h-[30vw]' src={coverImage} alt="" />
                 <h1 className='text-center text-[#00eeffbe] text-4xl font-semibold max-sm:text-[5vw]'>{title}</h1>
                 <h1 className='text-center text-4xl font-semibold max-lg:text-3xl max-sm:text-[4.2vw]'>{summary}</h1>
-                <hr className='w-[95vw] max-lg:w-[90vw] max-sm:w-[80vw] mx-auto mt-2 text-gray-300' />
+                <hr className='w-[100%] max-lg:w-[90vw] max-sm:w-[80vw] mx-auto mt-2 text-gray-300' />
                 <div>
                     <h1 className='text-2xl max-sm:text-[4.2vw] text-center underline font-semibold text-green-600'>Job Informations</h1>
                     <div className='text-xl flex justify-around max-lg:justify-between max-sm:flex-col max-sm:text-center'>
@@ -77,6 +89,7 @@ const JobDetails = () => {
                 </div>
                 <button onClick={handleAccept} className='button mx-auto mt-5'>Accept</button>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

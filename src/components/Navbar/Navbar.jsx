@@ -109,7 +109,7 @@ const Navbar = () => {
 
 
   return (
-    <div className="static top-0 z-50 bg-[#11062c49] shadow-sm">
+    <div className="fixed top-0 left-0 w-full z-50 bg-[#11062c49] shadow-sm backdrop-blur">
       <div className="navbar px-4 py-3 flex justify-between items-center">
         <Link to={"/"} className="flex items-center gap-3 text-2xl font-bold text-white">
           <img src={image} className="w-12 h-10 rounded-md object-cover" alt="logo" />
