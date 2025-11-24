@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router';
 import JobData from '../../hooks/JobData';
+import { AuthContext } from '../../context/AuthContext';
+import axios from 'axios';
 const JobDetails = () => {
     const { _id } = useParams();
     const { jobData } = JobData();
     const jobDataByIn = jobData.find(j => j._id === _id)
-    const { budget, category, currency, experienceLevel, jobType, postedBy, skillsRequired, status, summary, title, userEmail, coverImage} = jobDataByIn || {}
-    console.log(jobDataByIn);
+    const { budget, category, currency, experienceLevel, jobType, postedBy, skillsRequired, status, summary, title, userEmail, coverImage } = jobDataByIn || {}
+    const { user } = useContext(AuthContext);
+    const handleAccept = async () => {
+        const acceptedJob = { jobId: _id, title, summary, category, experienceLevel, jobType, postedBy, employerEmail: user.email, acceptedBy: user.email, acceptedAt: new Date() }
+        try {
+            const response = await axios.post("http://localhost:3000/accepted", acceptedJob);
+            console.log(response.data);
+            alert("Job Accepted Successfully!");
+        } catch (error) {
+            console.error(error);
+            alert("Error accepting job");
+        }
+    }
     return (
         <div className='my-8 p-2.5'>
             <div className='w-full h-full p-4 border rounded-2xl max-w-[1300px] '>
@@ -62,6 +75,7 @@ const JobDetails = () => {
                         <h2 className=' max-sm:text-[4.2vw]'>Email : <span> {userEmail}</span></h2>
                     </div>
                 </div>
+                <button onClick={handleAccept} className='button mx-auto mt-5'>Accept</button>
             </div>
         </div>
     );

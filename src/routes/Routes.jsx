@@ -8,6 +8,7 @@ import AcceptedTasks from "../pages/AcceptedTasks/AcceptedTasks";
 import AddJob from "../pages/AddJob/AddJob";
 import PrivateRouter from "./PrivateRouter";
 import JobDetails from "../pages/JobDetails/jobDetails";
+import ErrorPage from "../Error/ErrorPage";
 
 const routes = createBrowserRouter(
     [
@@ -50,6 +51,10 @@ const routes = createBrowserRouter(
                 {
                     path: '/register',
                     Component: Register,
+                },
+                {
+                    path: '*',
+                    Component: ErrorPage,
                 },
             ]
         }

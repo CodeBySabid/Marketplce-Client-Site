@@ -109,7 +109,7 @@ const Navbar = () => {
 
 
   return (
-    <div className="sticky top-0 z-50 bg-[#11062c49] shadow-sm">
+    <div className="static top-0 z-50 bg-[#11062c49] shadow-sm">
       <div className="navbar px-4 py-3 flex justify-between items-center">
         <Link to={"/"} className="flex items-center gap-3 text-2xl font-bold text-white">
           <img src={image} className="w-12 h-10 rounded-md object-cover" alt="logo" />
@@ -156,7 +156,7 @@ const Navbar = () => {
         >
           {links}
 
-          <div className='flex w-full justify-center items-center gap-4'>
+          <div className='flex w-full justify-center items-center gap-2'>
             <ToggleBtn />
             <div className="relative group">
               {user ? (
@@ -169,8 +169,8 @@ const Navbar = () => {
               <Link onClick={handleSigOut} className="btns w-36">Log Out</Link>
             ) : (
               <>
-                <Link to={"/login"} className="btns w-36">Login</Link>
-                <Link to={"/register"} className="btns w-36">Register</Link>
+                <Link to={"/login"} className="btns w-36 max-sm:w-25">Login</Link>
+                <Link to={"/register"} className="btns w-36 max-sm:w-25">Register</Link>
               </>
             )}
           </div>
