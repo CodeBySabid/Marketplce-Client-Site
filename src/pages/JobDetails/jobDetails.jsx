@@ -12,7 +12,7 @@ const JobDetails = () => {
     const { budget, category, currency, experienceLevel, jobType, postedBy, skillsRequired, status, summary, title, userEmail, coverImage } = jobDataByIn || {}
     const { user } = useContext(AuthContext);
     const handleAccept = async () => {
-        const acceptedJob = { jobId: _id, title, summary, category, experienceLevel, jobType, postedBy, employerEmail: user.email, acceptedBy: user.email, acceptedAt: new Date() }
+        const acceptedJob = { jobId: _id, title, summary, category, experienceLevel, jobType, postedBy, coverImage, employerEmail: user.email, acceptedBy: user.email, acceptedAt: new Date() }
         try {
             const response = await axios.post("http://localhost:3000/accepted", acceptedJob);
             // toast.success("Job Accepted Successfully!")
