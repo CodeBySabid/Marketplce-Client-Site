@@ -22,8 +22,15 @@ const UpdateJob = () => {
         try {
             await axios.put(`http://localhost:3000/job/${id}`, job);
 
-            toast.success("Job Updated Successfully!");
-            navigate("/my-jobs");
+            toast.success("Job Add Successfully!", {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                onClose: () => navigate("/myjobs")
+            });
 
         } catch (error) {
             console.log(error);
