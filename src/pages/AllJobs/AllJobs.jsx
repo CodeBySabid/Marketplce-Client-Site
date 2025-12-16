@@ -3,7 +3,6 @@ import AlljobsData from './AlljobsData';
 
 const AllJobs = () => {
     const { jobData } = JobData();
-    console.log(jobData)
     return (
         <div className='mt-4'>
             <h1 className='text-3xl text-center'>({jobData.length}) job Found</h1>

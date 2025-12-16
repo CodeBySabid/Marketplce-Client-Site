@@ -1,6 +1,7 @@
 import '../../App.css';
 import FloatingLines from './FloatingLines';
 import '../Home/button.css'
+import { Link } from 'react-router';
 
 const HeroSection = () => {
     return (
@@ -25,7 +26,7 @@ const HeroSection = () => {
                     <p>
                         Find the perfect jog for you
                     </p>
-                    <button className='shadow__btn mt-3.5 md:text-[17px] max-md:text-[2vw] max-sm:text-[4vw]'>Create a Job</button>
+                    <Link to={'/addjob'} className='shadow__btn mt-3.5 md:text-[17px] max-md:text-[2vw] max-sm:text-[4vw]'>Create a Job</Link>
                 </div>
             </div>
         </div>

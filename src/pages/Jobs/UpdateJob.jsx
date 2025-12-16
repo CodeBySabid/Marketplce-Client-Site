@@ -5,7 +5,6 @@ import { toast, ToastContainer } from "react-toastify";
 
 const UpdateJob = () => {
     const { id } = useParams();
-    console.log(id)
     const navigate = useNavigate();
 
     const [job, setJob] = useState({});

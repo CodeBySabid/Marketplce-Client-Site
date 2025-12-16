@@ -49,10 +49,10 @@ const AcceptedTasks = () => {
 
     const handleDeleteDone = async (id) => {
         const result = await Swal.fire({
-                    title: "Drag me!",
-                    icon: "success",
-                    draggable: true
-                });
+            title: "Drag me!",
+            icon: "success",
+            draggable: true
+        });
 
         if (result.isConfirmed) {
             try {
@@ -70,20 +70,23 @@ const AcceptedTasks = () => {
     };
 
     return (
-        <div className='my-8 max-w-[1200px] mx-auto grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
-            {acceptedJobs.map(job => (
-                <div key={job._id} className='border p-4 rounded-xl shadow-lg'>
-                    <img src={job.coverImage} alt={job.title} className="w-full h-40 object-cover rounded-lg mb-3" />
-                    <h2 className='text-xl font-semibold'>{job.title}</h2>
-                    <p>{job.summary}</p>
-                    <p className='text-sm text-gray-500'>Category: {job.category}</p>
-                    <p className='text-sm text-gray-500'>Accepted At: {new Date(job.acceptedAt).toLocaleString()}</p>
-                    <div className='flex justify-between'>
-                        <button onClick={() => handleDeleteDone(job._id)} className="btn-done">✅ DONE</button>
-                        <button onClick={() => handleDelete(job._id)} className="btn-cancel">❌ CANCEL</button>
+        <div>
+            <h1 className='text-center text-3xl'>My Accepted Tasks ({acceptedJobs.length})</h1>
+            <div className='my-8 max-w-[1200px] mx-auto grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+                {acceptedJobs.map(job => (
+                    <div key={job._id} className='border p-4 rounded-xl shadow-lg'>
+                        <img src={job.coverImage} alt={job.title} className="w-full h-40 object-cover rounded-lg mb-3" />
+                        <h2 className='text-xl font-semibold'>{job.title}</h2>
+                        <p>{job.summary}</p>
+                        <p className='text-sm text-gray-500'>Category: {job.category}</p>
+                        <p className='text-sm text-gray-500'>Accepted At: {new Date(job.acceptedAt).toLocaleString()}</p>
+                        <div className='flex justify-between'>
+                            <button onClick={() => handleDeleteDone(job._id)} className="btn-done">✅ DONE</button>
+                            <button onClick={() => handleDelete(job._id)} className="btn-cancel">❌ CANCEL</button>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     );
 };

@@ -4,7 +4,6 @@ import { Link } from 'react-router';
 
 const AlljobsData = ({ JobData }) => {
     const { _id } = JobData
-    console.log(_id)
     return (
         <div data-aos="flip-down" className="cards">
             <div className="w-full h-full cards2">

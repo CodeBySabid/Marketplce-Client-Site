@@ -24,9 +24,7 @@ const routes = createBrowserRouter(
                 },
                 {
                     path: '/alljobs',
-                    element: <PrivateRouter>
-                        <AllJobs></AllJobs>
-                    </PrivateRouter>
+                    element: <AllJobs></AllJobs>
                 },
                 {
                     path: '/addjob',
