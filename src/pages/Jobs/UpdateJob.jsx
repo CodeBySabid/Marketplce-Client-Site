@@ -1,7 +1,8 @@
 import { useParams, useNavigate } from "react-router";
-import axios from "axios";
+// import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import useAxios from "../../hooks/useAxios";
 
 const UpdateJob = () => {
     const { id } = useParams();
@@ -9,18 +10,17 @@ const UpdateJob = () => {
 
     const [job, setJob] = useState({});
 
+    const axiosScecure = useAxios();
     useEffect(() => {
-        axios.get(`http://localhost:3000/users/${id}`)
+        axiosScecure.get(`/users/${id}`)
             .then(res => setJob(res.data))
-            .catch(err => console.log(err));
     }, [id]);
 
     const handleUpdate = async (e) => {
         e.preventDefault();
 
         try {
-            await axios.put(`http://localhost:3000/job/${id}`, job);
-
+            await axiosScecure.put(`/job/${id}`, job);
             toast.success("Job Add Successfully!", {
                 position: "top-right",
                 autoClose: 2000,
@@ -32,7 +32,7 @@ const UpdateJob = () => {
             });
 
         } catch (error) {
-            console.log(error);
+            toast.error(error.massage);
         }
     };
 

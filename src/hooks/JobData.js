@@ -8,7 +8,7 @@ const JobData = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios('http://localhost:3000/users')
+        axios('https://market-place-server-site-one.vercel.app/users')
         .then(data => setJobData(data.data))
         .catch(err => serError(err))
         .finally(() => setLoading(false))

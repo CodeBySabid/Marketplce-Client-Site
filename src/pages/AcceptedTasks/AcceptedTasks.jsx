@@ -1,15 +1,17 @@
 import React, { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
 import Swal from 'sweetalert2';
+import useAxios from '../../hooks/useAxios';
 
 const AcceptedTasks = () => {
     const { user } = useContext(AuthContext);
     const [acceptedJobs, setAcceptedJobs] = useState([]);
+    const axiosScecure = useAxios();
 
     useEffect(() => {
         if (user?.email) {
-            axios.get(`http://localhost:3000/my-accepted?email=${user.email}`)
+            axiosScecure.get(`/my-accepted?email=${user.email}`)
                 .then(res => setAcceptedJobs(res.data))
                 .catch(err => console.log(err));
         }
@@ -28,7 +30,7 @@ const AcceptedTasks = () => {
 
         if (result.isConfirmed) {
             try {
-                await axios.delete(`http://localhost:3000/accepted/${id}`);
+                await axiosScecure.delete(`/accepted/${id}`);
                 setAcceptedJobs(acceptedJobs.filter(job => job._id !== id));
                 await Swal.fire({
                     title: "Deleted!",
@@ -56,7 +58,7 @@ const AcceptedTasks = () => {
 
         if (result.isConfirmed) {
             try {
-                await axios.delete(`http://localhost:3000/accepted/${id}`);
+                await axiosScecure.delete(`/accepted/${id}`);
                 setAcceptedJobs(acceptedJobs.filter(job => job._id !== id));
             } catch (err) {
                 console.log(err);

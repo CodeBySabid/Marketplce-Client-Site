@@ -1,9 +1,10 @@
-import axios from "axios";
+// import axios from "axios";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router";
 import "react-toastify/dist/ReactToastify.css";
+import useAxios from "../../hooks/useAxios";
 
 const AddJob = () => {
     const { user } = useContext(AuthContext);
@@ -12,6 +13,7 @@ const AddJob = () => {
     const [summary, setSummary] = useState("");
     const [coverImage, setCoverImage] = useState("");
     const navigate = useNavigate();
+    const axiosScecure = useAxios();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,7 +27,7 @@ const AddJob = () => {
         };
 
         try {
-            await axios.post("http://localhost:3000/users", jobData);
+            await axiosScecure.post("/users", jobData);
             toast.success("Job Posted Successfully!", {
                 position: "top-right",
                 autoClose: 2000,
@@ -82,6 +84,13 @@ const AddJob = () => {
                                 onChange={(e) => setCoverImage(e.target.value)}
                                 className="input"
                                 placeholder="Photo-URL"
+                            />
+                            <label className="label">Email</label>
+                            <input
+                                type="email"
+                                className="input"
+                                placeholder="Email"
+                                defaultValue={user.email}
                             />
                             <button className="button mt-2 w-[95%]">Add Job</button>
                         </form>

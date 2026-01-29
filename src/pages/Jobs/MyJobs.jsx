@@ -3,14 +3,15 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
+import useAxios from "../../hooks/useAxios";
 
 const MyJobs = () => {
     const { user } = useContext(AuthContext);
     const [jobs, setJobs] = useState([]);
-
+    const axiosScecure = useAxios();
     useEffect(() => {
         if (user?.email) {
-            axios.get(`http://localhost:3000/my-jobs?email=${user.email}`)
+            axiosScecure.get(`/my-jobs?email=${user.email}`)
                 .then(res => setJobs(res.data))
                 .catch(err => console.log(err));
         }
@@ -96,7 +97,7 @@ const MyJobs = () => {
                                     </svg>
                                 </span>
                                 <span
-                                    className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-200"
+                                    className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-linear-to-b from-transparent via-transparent to-gray-200"
                                 ></span>
                                 <span className="relative text-base font-semibold">UpdateJob</span>
                             </Link>

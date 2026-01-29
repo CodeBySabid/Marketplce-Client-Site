@@ -7,10 +7,10 @@ import AllJobs from "../pages/AllJobs/AllJobs";
 import AcceptedTasks from "../pages/AcceptedTasks/AcceptedTasks";
 import AddJob from "../pages/AddJob/AddJob";
 import PrivateRouter from "./PrivateRouter";
-import JobDetails from "../pages/JobDetails/jobDetails";
 import ErrorPage from "../Error/ErrorPage";
 import MyJobs from "../pages/Jobs/MyJobs";
 import UpdateJob from "../pages/Jobs/UpdateJob";
+import JobDetails from "../pages/JobDetails/JobDetails";
 
 const routes = createBrowserRouter(
     [

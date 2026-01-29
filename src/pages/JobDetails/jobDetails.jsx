@@ -2,19 +2,21 @@ import React, { useContext } from 'react';
 import { useParams } from 'react-router';
 import JobData from '../../hooks/JobData';
 import { AuthContext } from '../../context/AuthContext';
-import axios from 'axios';
+// import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import Swal from 'sweetalert2';
+import useAxios from '../../hooks/useAxios';
 const JobDetails = () => {
     const { _id } = useParams();
     const { jobData } = JobData();
     const jobDataByIn = jobData.find(j => j._id === _id)
     const { budget, category, currency, experienceLevel, jobType, postedBy, skillsRequired, status, summary, title, userEmail, coverImage } = jobDataByIn || {}
     const { user } = useContext(AuthContext);
+    const axiosScecure = useAxios();
     const handleAccept = async () => {
         const acceptedJob = { jobId: _id, title, summary, category, experienceLevel, jobType, postedBy, coverImage, employerEmail: user.email, acceptedBy: user.email, acceptedAt: new Date() }
         try {
-            const response = await axios.post("http://localhost:3000/accepted", acceptedJob);
+            const response = await axiosScecure.post("/accepted", acceptedJob);
             // toast.success("Job Accepted Successfully!")
             Swal.fire({
                 title: "Job Accepted Successfully!",

@@ -17,6 +17,24 @@ const Navbar = () => {
     localStorage.getItem("theme") || "light"
   );
 
+  const [hideNav, setHideNav] = useState(false);
+  const lastScrolly = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrolly.current) {
+        setHideNav(true);
+      }
+      else {
+        setHideNav(false);
+      }
+      lastScrolly.current = window.scrollY;
+    }
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+
+  }, [])
+
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
@@ -113,7 +131,7 @@ const Navbar = () => {
 
 
   return (
-    <div className="fixed top-0 left-0 w-full z-50 bg-[#11062c49] shadow-sm backdrop-blur">
+    <div className={`transform  transition-transform duration-300 ${hideNav ? "-translate-y-full" : "translate-y-0"} fixed top-0 left-0 w-full z-50 bg-[#11062c49] shadow-sm backdrop-blur`}>
       <div className="navbar px-4 py-3 flex justify-between items-center">
         <Link to={"/"} className="flex items-center gap-3 text-2xl font-bold text-white">
           <img src={image} className="w-12 h-10 rounded-md object-cover" alt="logo" />
@@ -164,10 +182,15 @@ const Navbar = () => {
             <ToggleBtn />
             <div className="relative group">
               {user ? (
-                <Link to={'/'}>
+                <Link to={'/myprofile'}>
                   <img className="rounded-full w-[45px] h-[45px] object-cover cursor-pointer" src={user.photoURL} alt="profile" />
                 </Link>
               ) : ''}
+              {user && (
+                <span className="absolute left-1/2 -bottom-10 -translate-x-1/2 bg-gray-800 text-white text-sm px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
+                  {user.displayName}
+                </span>
+              )}
             </div>
             {user ? (
               <Link onClick={handleSigOut} className="btns w-36">Log Out</Link>
